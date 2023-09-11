@@ -1,0 +1,19 @@
+body {
+    background-color:slategray;
+}
+
+.box {
+    margin: auto;
+    margin-bottom: 12px;
+    width: 50%;
+    text-align: center;
+    background-color: lightblue;
+    border-radius: 10px;
+    border: 2px white solid;
+    color: white;
+    font-size: 24px;
+}
+
+.smalltext {
+    font-size: 18px;
+}
