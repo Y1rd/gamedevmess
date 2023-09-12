@@ -1,13 +1,26 @@
 body {
-    background-color:slategray;
+    background-color:#3d434f;
 }
 
 .box {
     margin: auto;
     margin-bottom: 12px;
-    width: 50%;
+    width: 40%;
     text-align: center;
-    background-color: lightblue;
+    background-color: #61787e;
+    border-radius: 10px;
+    border: 2px white solid;
+    color: white;
+    font-size: 24px;
+}
+
+.smallbox {
+    margin: auto;
+    margin-bottom: 12px;
+    width: 35%;
+    text-align: center;
+    /*background-color: lightblue;*/
+    background-color: #61787e;
     border-radius: 10px;
     border: 2px white solid;
     color: white;
@@ -15,5 +28,6 @@ body {
 }
 
 .smalltext {
-    font-size: 18px;
+    font-size: 20px;
+    padding: 4px;
 }
