@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 body {
-    background-color:#3d434f;
+    background-color: #3d434f;
+    background-image: linear-gradient(to top, #292d35, #3d434f);
+    background-attachment: fixed;
     font-family: 'Barlow', sans-serif;
     padding: 0;
     margin: 0;
@@ -28,24 +30,35 @@ p {
     margin: auto;
     margin-top: .5em;
     margin-bottom: .5em;
-    width: 40%;
+    width: 90%;
+    max-width: 750px;
+    display: block;
     text-align: center;
-    background-color: #61787e;
+    align-content: center;
     border-radius: 10px;
     border: 2px white solid;
-    color: white;
-    font-size: 28px;
+    background-color: #61787e;
 }
 
 .smallbox {
     margin: auto;
     margin-bottom: 12px;    
-    width: 35%;
+    width: 80%;
+    max-width: 650px;
+    display: block;
     text-align: center;
-    /*background-color: lightblue;*/
-    background-color: #61787e;
     border-radius: 10px;
     border: 2px white solid;
+    background-color: #61787e;
+}
+
+.boxcontent {
+    margin: 0;
+    color: white;
+    font-size: 28px;
+}
+
+.boxcontentsmall {
     color: white;
     font-size: 24px;
 }
