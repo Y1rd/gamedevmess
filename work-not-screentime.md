@@ -1,2 +1,11 @@
-# Just testing if my vs code setup works
-Hopefully it does!
+# VIDEO FLAC
+Variable
+Input/Output
+Decisions
+Events
+Objects
+
+Functions
+Loops
+Arrays
+Classes
