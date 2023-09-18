@@ -22,6 +22,11 @@ p {
     margin: .5em;
 }
 
+ul {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 #yirdimg {
     display: block;
     margin: auto;
