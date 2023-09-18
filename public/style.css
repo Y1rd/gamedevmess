@@ -14,8 +14,8 @@ a {
     color: white;
 }
 
-h1, h2 {
-    margin: .1em;
+h1, h2, h3 {
+    margin: .2em;
 }
 
 p {
@@ -35,6 +35,19 @@ ul {
     border-radius: 50%;
 }
 
+.bigbox {
+    margin: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    width: 90%;
+    max-width: 875px;
+    display: block;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px white solid;
+    background-color: #61787e;
+}
+
 .box {
     margin: auto;
     margin-top: 1em;
@@ -43,7 +56,6 @@ ul {
     max-width: 750px;
     display: block;
     text-align: center;
-    align-content: center;
     border-radius: 10px;
     border: 2px white solid;
     background-color: #61787e;
@@ -60,6 +72,7 @@ ul {
     border: 2px white solid;
     background-color: #61787e;
 }
+
 
 .boxcontent {
     margin: 0;

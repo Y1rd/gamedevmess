@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Lists & Forms</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="box">
+        <div class="boxcontent">
+            <h2>An actual form!</h2>
+            <p>It's about something, trust me.</p>
+        </div>
+        <div class="boxcontentsmall">
+            <form>
+                <h3>Your name, please:</h3>
+                <input type="text" id="myText01" value="Fred"><br>
+                <h3>Food choice?</h3>
+                <label>Beef:<input type="checkbox"></form><br>
+                <label>Veggie:<input type="checkbox"></form>
+                <h3>Radio Buttons:</h3>
+                <label>95.4<input type="radio" name="myRad01" value=""></label>
+                <label>101<input type="radio" name="myRad01" value=""></label>
+                
+                <h3>Select a pet!</h3>
+                <select id="mySelect01" size="2" onchange="{document.getElementById('myArea01').value = document.getElementById('mySelect01').value}">
+                <option value="I like dogs because...">Dog</option>
+                <option value="I like cats because...">Cat</option>
+                <option value="I like mouses because...">Mouse</option>
+                </select>
+
+                <h3>Tell me about what animal you picked.</h3>
+                <input type="button" value="Reset Textbox" onclick="{document.getElementById('myText01').value = 'cool'}"><br>
+                <textarea id="myArea01" cols="60" rows="5">Select an animal first...</textarea><br>
+
+                <h3>Anything else?</h3>
+                <input type="file"><br>
+                <input type="reset"><br>
+                <input type="submit"><br>
+                <input type="hidden" value="Someone is looking at the code here, I see."><br>
+            </form>
+        </div>
+	</div>
+</body>
+</html>
