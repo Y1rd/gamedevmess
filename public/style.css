@@ -94,7 +94,7 @@ ul {
 }
 
 .button {
-    background-color: lightblue;
+    background-color: #add8e6;
     font-size: 22px;
     display: inline-block;
     margin: auto;
@@ -103,8 +103,11 @@ ul {
     width: 120px;
     min-width: 120px;
     border-radius: 8px;
+    transition: ease .2s;
 }
 
-.button:hover, .button:active {
-    background-color: #afafaf;
+.button:hover {
+    background-color: #d9eff7;
+    transition: ease .2s;
+    color: #d1d1d1;
 }
