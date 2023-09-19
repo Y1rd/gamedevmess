@@ -98,6 +98,7 @@ ul {
     font-size: 22px;
     display: inline-block;
     margin: auto;
+    margin-bottom: 4px;
     padding: 4px;
     width: 120px;
     min-width: 120px;
