@@ -23,6 +23,13 @@ ul {
     margin-left: 0;
     margin-right: 0;
 }
+tr:nth-child(even) {
+    background-color: #6e888f;
+    border: #6e888f 8px solid;
+}
+table {
+    border-collapse: collapse;
+}
 
 #yirdimg {
     display: block;
@@ -37,7 +44,7 @@ ul {
     margin-top: 1em;
     margin-bottom: 1em;
     width: 90%;
-    max-width: 875px;
+    max-width: 955px;
     display: block;
     text-align: center;
     border-radius: 10px;
