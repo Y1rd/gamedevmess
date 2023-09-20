@@ -13,15 +13,12 @@ a {
     text-decoration: none;
     color: white;
 }
-
 h1, h2, h3 {
     margin: .2em;
 }
-
 p {
     margin: .5em;
 }
-
 ul {
     margin-left: 0;
     margin-right: 0;
@@ -47,7 +44,6 @@ ul {
     border: 2px white solid;
     background-color: #61787e;
 }
-
 .box {
     margin: auto;
     margin-top: 1em;
@@ -60,7 +56,6 @@ ul {
     border: 2px white solid;
     background-color: #61787e;
 }
-
 .smallbox {
     margin: auto;
     margin-bottom: 12px;    
@@ -79,7 +74,6 @@ ul {
     color: white;
     font-size: 28px;
 }
-
 .boxcontentsmall {
     color: white;
     font-size: 24px;
@@ -88,11 +82,6 @@ ul {
 .buttonbox {
     margin: .6em;
 }
-
-.smalltext {
-    font-size: 24px;
-}
-
 .button {
     background-color: #add8e6;
     font-size: 22px;
@@ -105,7 +94,6 @@ ul {
     border-radius: 8px;
     transition: ease .2s;
 }
-
 .button:hover {
     background-color: #d9eff7;
     transition: ease .2s;
