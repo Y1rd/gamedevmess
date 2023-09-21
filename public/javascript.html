@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Lists & Forms</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="box">
+        <div class="boxcontent">
+            <h1 id="cat">The cat is...</h1>
+            <div class="boxcontentsmall">
+                <p>Testing.</p>
+                <a href="#" class="button" onclick="javascript:myPrint(1)">3</a>
+                <a href="#" class="button" onclick="javascript:myPrint(3)">3</a>
+                <a href="#" class="button" onclick="javascript:myPrint(5)">5</a>
+                <a href="#" class="button" onclick="javascript:myPrint(7)">7</a>
+                <a href="#" class="button" onclick="javascript:myPrint(9)">9</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        let animal = "cat";
+        let outarray = new Array();
+
+        function myPrint(x) {
+            for (i=1; i <= x; i++) {
+                if (x <= 3) {
+                    animal = "kitten"
+                }
+                outarray[i] = 'The ' + animal + ' is ' + x + ' years old.'
+            }
+            document.getElementById('cat').innerHTML = (outarray[1]);
+        }
+        myPrint(5)
+    </script>
+</body>
+</html>
