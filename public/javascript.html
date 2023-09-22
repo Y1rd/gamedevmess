@@ -22,12 +22,13 @@
         </div>
     </div>
     <script>
-        let animal = "cat";
+        let animal = "cat"
         let outarray = new Array();
 
         function myPrint(x) {
             for (i=1; i <= x; i++) {
                 if (x >= 4) {
+                    animal = "cat"
                     outarray[i] = 'The ' + animal + ' is ' + x + ' years old.'
                 } else if (x <= 0) {
                     outarray[i] = 'The ' + animal + ' is not born yet.'
