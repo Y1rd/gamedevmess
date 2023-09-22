@@ -26,22 +26,25 @@
         let animal = "cat"
         let outarray = new Array();
 
-        // Print Text Function
+        // Check age value and make descision
         function myPrint(x) {
+            // Kitten isn't born if 0 years old (or negative)
             if (x <= 0) {
                 animal = "kitten";
                 outarray[1] = 'The ' + animal + ' is not born yet.';
             } else {
                 for (i = 1; i <= x; i++) {
+                    // Cat if 4 years or older
                     if (x >= 4) {
                         animal = "cat";
                         outarray[1] = 'The ' + animal + ' is ' + x + ' years old.';
-                    } else {
+                    } else { // Kitten if younger
                         animal = "kitten";
                         outarray[1] = 'The ' + animal + ' is ' + x + ' years old.';
                     }
                 }
             }
+            // Replace the header text
             document.getElementById('cat').innerHTML = (outarray[1]);
         }
         myPrint(5)
