@@ -13,11 +13,21 @@
             <div class="boxcontentsmall">
                 <p>Enter a name and see if they are a zombie!</p>
                 <label>Is <input id="ztext" type="text"> a zombie?</label><br>
-                <input id="zcheck" type="button" value="Check" onclick="alert('Maybe...')" >
+                <input type="button" value="Check" onclick="zombieChecker(document.getElementById('ztext').value)" >
             </div>
         </div>
     </div>
     <script>
+        // Variables
+        const zombies = ["John", "Tommy", "Fred", "Bob"]
+        const humans = ["Yird, Ellis, Breden, Daniel, Tommy"]
+        const special = ["Ethan"]
+        let name
+
+        // Zombie Checker function based on input
+        function zombieChecker(name) {
+            alert(name + ' might be a zombie.')
+        }
     </script>
 </body>
 </html>
