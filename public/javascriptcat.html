@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  	<title>Lists & Forms</title>
+  	<title>A Cat's Age</title>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,8 +11,8 @@
         <div class="boxcontent">
             <h1 id="cat">The cat is...</h1>
             <div class="boxcontentsmall">
-                <p>Testing.</p>
-                <a href="#" class="button" onclick="javascript:myPrint(0)">Not born (DOESNT WORK).</a>
+                <p>What is the age of this cat though?</p>
+                <a href="#" class="button" onclick="javascript:myPrint(0)">Not born.</a>
                 <a href="#" class="button" onclick="javascript:myPrint(1)">1</a>
                 <a href="#" class="button" onclick="javascript:myPrint(3)">3</a>
                 <a href="#" class="button" onclick="javascript:myPrint(5)">5</a>
@@ -22,19 +22,24 @@
         </div>
     </div>
     <script>
+        // Variables
         let animal = "cat"
         let outarray = new Array();
 
+        // Print Text Function
         function myPrint(x) {
-            for (i=1; i <= x; i++) {
-                if (x >= 4) {
-                    animal = "cat"
-                    outarray[i] = 'The ' + animal + ' is ' + x + ' years old.'
-                } else if (x <= 0) {
-                    outarray[i] = 'The ' + animal + ' is not born yet.'
-                } else {
-                    animal = "kitten"
-                    outarray[i] = 'The ' + animal + ' is ' + x + ' years old.'
+            if (x <= 0) {
+                animal = "kitten";
+                outarray[1] = 'The ' + animal + ' is not born yet.';
+            } else {
+                for (i = 1; i <= x; i++) {
+                    if (x >= 4) {
+                        animal = "cat";
+                        outarray[1] = 'The ' + animal + ' is ' + x + ' years old.';
+                    } else {
+                        animal = "kitten";
+                        outarray[1] = 'The ' + animal + ' is ' + x + ' years old.';
+                    }
                 }
             }
             document.getElementById('cat').innerHTML = (outarray[1]);
