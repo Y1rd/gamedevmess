@@ -11,22 +11,42 @@
         <div class="boxcontent">
             <h1>Zombie Checker</h1>
             <div class="boxcontentsmall">
-                <p>Enter a name and see if they are a zombie!</p>
-                <label>Is <input id="ztext" type="text"> a zombie?</label><br>
+                <p>Select a name and see if they are a zombie!</p>
+                <label>Is <select id="ztext" type="text">
+                    <option>John</option>
+                    <option>Yird</option>
+                    <option>Breden</option>
+                    <option>Fred</option>
+                    <option>Bob</option>
+                    <option>Ellis</option>
+                    <option>Ethan</option>
+                    <option>Daniel</option>
+                    <option>Tommy</option>
+                    <option>Coach</option>
+                    </select>
+                    a zombie?</label><br>
                 <input type="button" value="Check" onclick="zombieChecker(document.getElementById('ztext').value)" >
             </div>
         </div>
     </div>
     <script>
         // Variables
-        const zombies = ["John", "Tommy", "Fred", "Bob"]
-        const humans = ["Yird, Ellis, Breden, Daniel, Tommy"]
-        const special = ["Ethan"]
-        let name
+        const zombies = ["John", "Tommy", "Fred", "Bob", "Coach"];
+        const humans = ["Yird", "Ellis", "Breden", "Daniel", "Tommy"];
+        const special = ["Ethan"];
 
         // Zombie Checker function based on input
         function zombieChecker(name) {
-            alert(name + ' might be a zombie.')
+            // So many if statements, oh well, this is pretty small anyways.
+            if (zombies.includes(name)) {
+                alert(name + ' is a zombie!');
+            } else if (humans.includes(name)) {
+                alert(name + ' is a human.')
+            } else if (special.includes(name)) {
+                alert("Why is there so many Ethan`s? It's annoying! Oh yeah, they are all human.");
+            } else {
+                alert(name + ' has a unknown status.');
+            }
         }
     </script>
 </body>
