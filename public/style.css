@@ -11,7 +11,7 @@ body {
 
 a {
     text-decoration: none;
-    color: white;
+    color: white;   
 }
 h1, h2, h3 {
     margin: .2em;
@@ -22,6 +22,12 @@ p {
 ul {
     margin-left: 0;
     margin-right: 0;
+}
+th {
+    font-size: 32px;
+    background-color: #879fa5;
+    border: #879fa5 8px solid;
+    border-collapse: collapse;
 }
 tr:nth-child(even) {
     background-color: #6e888f;
@@ -38,18 +44,26 @@ table {
     border: white solid 2px;
     border-radius: 50%;
 }
+.imgscale {
+    max-width: 95%;
+    max-height: 95%;
+    margin: auto;
+    margin-bottom: 8px;
+    display: block;
+}
 
 .bigbox {
     margin: auto;
     margin-top: 1em;
     margin-bottom: 1em;
     width: 90%;
-    max-width: 955px;
+    max-width: 995px;
     display: block;
     text-align: center;
     border-radius: 10px;
     border: 2px white solid;
     background-color: #61787e;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .box {
     margin: auto;
@@ -62,6 +76,7 @@ table {
     border-radius: 10px;
     border: 2px white solid;
     background-color: #61787e;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .smallbox {
     margin: auto;
@@ -73,6 +88,7 @@ table {
     border-radius: 10px;
     border: 2px white solid;
     background-color: #61787e;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 
@@ -84,6 +100,7 @@ table {
 .boxcontentsmall {
     color: white;
     font-size: 24px;
+    margin-bottom: -4px;
 }
 
 .buttonbox {
@@ -94,7 +111,7 @@ table {
     font-size: 22px;
     display: inline-block;
     margin: auto;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     padding: 4px;
     width: 120px;
     min-width: 120px;

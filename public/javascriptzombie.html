@@ -35,7 +35,7 @@
         const humans = ["Yird", "Ellis", "Breden", "Daniel", "Tommy"];
         const special = ["Ethan"];
 
-        // Zombie Checker function based on input
+        // Zombie Checker function based on input.
         function zombieChecker(name) {
             // So many if statements, oh well, this is pretty small anyways.
             if (zombies.includes(name)) {
@@ -43,8 +43,8 @@
             } else if (humans.includes(name)) {
                 alert(name + ' is a human.')
             } else if (special.includes(name)) {
-                alert("Why is there so many Ethan`s? It's annoying! Oh yeah, they are all human.");
-            } else {
+                alert("Why is there so many Ethan's? It's annoying! Oh yeah, they are all human.");
+            } else { // Just in case something calls the function with a unknown name.
                 alert(name + ' has a unknown status.');
             }
         }
