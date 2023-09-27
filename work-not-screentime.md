@@ -1,4 +1,4 @@
-# VIDEO FLAC
+# VIDEO FLAC (Important)
 
 Variable
 Input/Output
@@ -10,3 +10,6 @@ Functions
 Loops
 Arrays
 Classes
+
+# Personal Research
+Nothing as of Sept. 27th, 2023. Will start today or tomorrow.
