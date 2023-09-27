@@ -11,5 +11,6 @@ Loops
 Arrays
 Classes
 
-# Personal Research
+## Personal Research
+
 Nothing as of Sept. 27th, 2023. Will start today or tomorrow.
