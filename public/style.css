@@ -108,13 +108,13 @@ table {
 }
 .button {
     background-color: #add8e6;
-    font-size: 22px;
+    font-size: 20px;
     display: inline-block;
     margin: auto;
     margin-bottom: 8px;
     padding: 4px;
-    width: 120px;
-    min-width: 120px;
+    width: 125px;
+    min-width: 125px;
     border-radius: 8px;
     transition: ease .2s;
 }
