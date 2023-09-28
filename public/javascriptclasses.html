@@ -12,16 +12,20 @@
             <h1>Classes, and creating people.</h1>
             <div class="boxcontentsmall">
                 <p>Write something below to make a person!</p>
-                <label>Name: <input class="nameinput" type="text"></label><br>
-                <label>Age: <input class="ageinput" type="text"></label><br>
-                <label>Favourite Fruit: <input class="fruitinput" type="text"></label><br>
+                <label>Name: <input class="nameinput" type="text" placeholder="Fred"></label><br>
+                <label>Age: <input class="ageinput" type="text" placeholder="32"></label><br>
+                <label>Favourite Fruit: <input class="fruitinput" type="text" placeholder="Apple"></label><br>
                 <input type="button" value="Create" onclick="
                     // A bit complex, but allows to create our own person.
                     const nameInput = document.querySelector('.nameinput');
                     const ageInput = document.querySelector('.ageinput');
                     const fruitInput = document.querySelector('.fruitinput');
-                    const person = new myPerson(nameInput.value, ageInput.value, fruitInput.value);
-                    person.sayName();">
+                    if (!nameInput.value || !ageInput.value || !fruitInput.value) {
+                        document.getElementById('persontext').textContent = 'You are missing text in a text box!';
+                    } else {
+                        const person = new myPerson(nameInput.value, ageInput.value, fruitInput.value);
+                    person.sayName();
+                    }">
                 <p id="persontext">...</p>
             </div>
         </div>
