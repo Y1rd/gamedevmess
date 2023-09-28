@@ -7,26 +7,37 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div class="box">
+	<div class="bigbox">
         <div class="boxcontent">
-            <h1>Classes, people, and age.</h1>
+            <h1>Classes, and creating people.</h1>
             <div class="boxcontentsmall">
-                <p id="persontext">Write something below to make a person.</p>
-                <input type="button" value="Check" onclick="const person = new myPerson('Bob', '19'); person.sayName()" >
+                <p>Write something below to make a person!</p>
+                <label>Name: <input class="nameinput" type="text"></label><br>
+                <label>Age: <input class="ageinput" type="text"></label><br>
+                <label>Favourite Fruit: <input class="fruitinput" type="text"></label><br>
+                <input type="button" value="Create" onclick="
+                    // A bit complex, but allows to create our own person.
+                    const nameInput = document.querySelector('.nameinput');
+                    const ageInput = document.querySelector('.ageinput');
+                    const fruitInput = document.querySelector('.fruitinput');
+                    const person = new myPerson(nameInput.value, ageInput.value, fruitInput.value);
+                    person.sayName();">
+                <p id="persontext">...</p>
             </div>
         </div>
     </div>
     <script>
         // A simple class function to define the name and age of someone from our input.
         class myPerson {
-            constructor(name, age){
+            constructor(name, age, fruit){
                 this.name = name;
                 this.age = age;
+                this.fruit = fruit;
             }
 
             // Function to grab our class variables and print them out.
             sayName(){
-                document.getElementById('persontext').textContent = 'Hello, ' + this.name + "! You're " + this.age + ' years old.'
+                document.getElementById('persontext').textContent = 'Hello, ' + this.name + "! You're " + this.age + ' years old. You really like ' + this.fruit + "'s!"
             }
         }
     </script>
