@@ -31,7 +31,33 @@
                 <a href="https://github.com/Y1rd/gamedevmess" class="button">Github Source (Y1rd)</a>
                 <a href="https://github.com/hpssjellis/high-school-javascript-game-dev-assignment-images" class="button">Assignment Source</a>
             </div>
+            <p class="buttondescription">A simple webpage showing basic html elements.</p>
+            <p class="buttondescription">Small page showing a basic list and an advanced table.</p>
+            <p class="buttondescription">A really basic form, althrough, the information doesn't go anywhere...</p>
+            <p class="buttondescription">My first javascript bit! Dynamic text based on a cat's age.</p>
+            <p class="buttondescription">A more complex javascript page to know if someone is a zombie or not.</p>
+            <p class="buttondescription">My personal research in class, work not phone screentime!</p>
+            <p class="buttondescription">My first class, allowing you to make a person (not really)!</p>
+            <p class="buttondescription">Where I actually store the code, of course.</p>
+            <p class="buttondescription">I don't want to talk about this one.</p>
         </div>
     </div>
+    <script>
+        // Varibles
+        const button = document.querySelectorAll('.button');
+        const description = document.querySelectorAll('.buttondescription');
+
+        // For each button, we can show the right description.
+        button.forEach((button, index) => {
+            button.addEventListener('mouseover', () => {
+                description[index].style.display = 'block';
+            });
+
+            // And hide the description when we aren't hovering.
+            button.addEventListener('mouseout', () => {
+                description[index].style.display = 'none';
+            });
+        });
+    </script>
 </body>
 </html>

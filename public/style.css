@@ -123,3 +123,6 @@ table {
     transition: ease .2s;
     color: #d1d1d1;
 }
+.buttondescription {
+    display: none;
+}
