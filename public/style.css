@@ -91,6 +91,9 @@ table {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.textboxsmall {
+    width: 80px;
+}
 
 .boxcontent {
     margin: 0;
@@ -123,10 +126,18 @@ table {
     border-radius: 8px;
     transition: ease .2s;
 }
+.button[role="button"] {
+    cursor: default;
+    user-select: none;
+}
 .button:hover {
     background-color: #d9eff7;
     transition: ease .2s;
     color: #d1d1d1;
+}
+.button[role="button"]:hover {
+    cursor: pointer;
+    user-select: none;
 }
 .buttondescription {
     display: none;
