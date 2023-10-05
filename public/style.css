@@ -142,3 +142,32 @@ table {
 .buttondescription {
     display: none;
 }
+
+/* Some styling for the calculator */
+#calcoutput {
+    display: inline-block;
+    margin: auto;
+    margin-bottom: 16px;
+    min-width: 550px;
+    height: 70px;
+    grid-column: 1 / -1;
+    align-content: center;
+    background-color: gray;
+    border: solid 2px #879fa5;
+}
+#currentoutput {
+    font-size: 24px;
+    margin-bottom: 0;
+}
+#lastoutput {
+    font-size: 18px;
+    color: #e9e9e9;
+    margin-bottom: 0;
+}
+
+#calcgrid {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(4, 150px);
+}

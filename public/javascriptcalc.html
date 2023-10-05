@@ -11,31 +11,66 @@
         <div class="boxcontent">
             <h1>Simple Calculator!</h1>
             <div class="boxcontentsmall">
-                <p>NOT FINISHED DO NOT MARK</p>
-                <p>Addition, subtraction, multiplation, asnd division.</p>
-                <input id="num1" class="textboxsmall" type="text" value="2">
-                <select id="symbol">
-                    <option>+</option>
-                    <option>-</option>
-                    <option>*</option>
-                    <option>/</option>
-                </select>
-                <input id="num2" class="textboxsmall" type="text" value="2">
-                <a role="button" class="button" onclick="calcNum()">Calcuate</a>
+                <p>Addition, subtraction, multiplation, and division.</p>
+                <div id="calcoutput">
+                    <p id="currentoutput">1234</p>
+                    <p id="lastoutput">123</p>
+                </div>
+                <div id="calcgrid">
+                    <a role="button" class="button" onclick="updateDisplay('1')">1</a>
+                    <a role="button" class="button" onclick="updateDisplay('2')">2</a>
+                    <a role="button" class="button" onclick="updateDisplay('3')">3</a>
+                    <a role="button" class="button" onclick="updateDisplay('/')">/</a>
+                    <a role="button" class="button" onclick="updateDisplay('4')">4</a>
+                    <a role="button" class="button" onclick="updateDisplay('5')">5</a>
+                    <a role="button" class="button" onclick="updateDisplay('6')">6</a>
+                    <a role="button" class="button" onclick="updateDisplay('*')">*</a>
+                    <a role="button" class="button" onclick="updateDisplay('7')">7</a>
+                    <a role="button" class="button" onclick="updateDisplay('8')">8</a>
+                    <a role="button" class="button" onclick="updateDisplay('9')">9</a>
+                    <a role="button" class="button" onclick="updateDisplay('+')">+</a>
+                    <a role="button" class="button" onclick="updateDisplay('0')">0</a>
+                    <a role="button" class="button" onclick="updateDisplay('.')">.</a>
+                    <a role="button" class="button" onclick="calcInput()">=</a>
+                    <a role="button" class="button" onclick="updateDisplay('-')">-</a>
+                    <a role="button" class="button" onclick="removeDisplay()">DEL</a>
+                    <a role="button" class="button" onclick="clearDisplay()">CLR</a>
+                </div>
             </div>
         </div>
     </div>
     <script>
-        // Caluclate function based on input
-        function calcNum() {
-            // Varibles
-            const number1 = parseFloat(document.getElementById("num1").value);
-            const number2 = parseFloat(document.getElementById("num2").value);
-            const symbol = document.getElementById("symbol").value
-            let results
+        // Varibles, we'll show at least one previous results
+        let expressionCurrent = '';
+        let expressionLast = '';
+        const numberCurrent = document.getElementById('currentoutput')
+        const numberLast = document.getElementById('lastoutput')
 
-            // Unfinished
-            alert(number1 + " and " + number2)
+        // Clears all the text on the display if the CLR button is pressed
+        function clearDisplay() {
+            expressionCurrent = '';
+            expressionLast = '';
+            numberCurrent.textContent = '';
+            numberLast.textContent = '';
+        }
+        // And just to remove one number or operator
+        function removeDisplay() {
+            expressionCurrent = expressionCurrent.slice(0, -1);
+            numberCurrent.textContent = expressionCurrent;
+        }
+
+        // Function to update display when a button is pressed
+        function updateDisplay(value) {
+            expressionCurrent += value;
+            numberCurrent.textContent = expressionCurrent
+        }
+
+        // Actually do calculation and display it
+        function calcInput() {
+            expressionLast = expressionCurrent
+            expressionCurrent = eval(expressionCurrent)
+            numberLast.textContent = expressionLast
+            numberCurrent.textContent = expressionCurrent
         }
     </script>
 </body>
