@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Trivia</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="bigbox">
+        <div class="boxcontent">
+            <h1>Trivia!</h1>
+            <div class="boxcontentsmall">
+                <h2 id="triviaquestion"></h2>
+                <h3 id="triviaquestiontype"></h3>
+                <h3 id="triviaprogress">?/?</h3>
+                <div id="triviabuttons">
+                    <a role="button" class="button" onclick="">Something</a>
+                    <a role="button" class="button" onclick="">Something</a>
+                    <a role="button" class="button" onclick="">Something</a>
+                    <a role="button" class="button" onclick="">Something</a>
+                </div>
+                <p id="triviacheck">...</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Variables
+        const question = document.getElementById('triviaquestion')
+        const options = document.getElementById('triviaquestions')
+        const category = document.getElementById('triviaquestiontype')
+
+        // Import the data from OpenDB, thanks GeekProbin
+        async function triviaQuestions() {
+            // Set API, fetch it, then grab the json
+            const api = 'https://opentdb.com/api.php?amount=10&type=multiple';
+            const result = await fetch(`${api}`);
+            const data = await result.json();
+            displayQuestions(data.results[0])
+        }
+
+        // Display the questions and answers
+        function displayQuestions(data) {
+            // Variables
+            let falseAnswers = data.incorrect_answers;
+            let trueAnswer = data.correct_answer;
+            let optionsDiv = falseAnswers
+
+            // Ordering and placing everything
+            //options.splice(Math.floor(Math.random() * (falseAnswers.length + 1)), 0, trueAnswer) broken
+            question.innerHTML = `${data.question}`;
+            category.innerHTML = `${data.category}`;
+        }
+
+        triviaQuestions()
+    </script>
+</body>
+</html>
