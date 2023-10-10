@@ -13,8 +13,8 @@
             <div class="boxcontentsmall">
                 <p>Addition, subtraction, multiplation, and division.</p>
                 <div id="calcoutput">
-                    <p id="currentoutput">1234</p>
-                    <p id="lastoutput">123</p>
+                    <p id="currentoutput"></p>
+                    <p id="lastoutput"></p>
                 </div>
                 <div id="calcgrid">
                     <a role="button" class="button" onclick="updateDisplay('1')">1</a>
@@ -71,6 +71,12 @@
             expressionCurrent = eval(expressionCurrent)
             numberLast.textContent = expressionLast
             numberCurrent.textContent = expressionCurrent
+
+            // Make sure we don't have a NaN in our expression
+            if ((isNaN(eval(expressionCurrent))) || expressionCurrent === Infinity) {
+                expressionCurrent = '';
+                numberCurrent.textContent = 'Seriously?';
+            }
         }
     </script>
 </body>
