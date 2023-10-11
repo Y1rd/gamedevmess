@@ -13,12 +13,12 @@
             <div class="boxcontentsmall">
                 <h2 id="triviaquestion"></h2>
                 <h3 id="triviaquestiontype"></h3>
-                <h3 id="triviaprogress">?/?</h3>
+                <h3 id="triviaprogress" style="display: inline-block;"">0/10</h3>
                 <div id="triviabuttons">
-                    <a role="button" class="button" onclick="">Something</a>
-                    <a role="button" class="button" onclick="">Something</a>
-                    <a role="button" class="button" onclick="">Something</a>
-                    <a role="button" class="button" onclick="">Something</a>
+                    <a role="button" class="button" style="display: none;"></a>
+                    <a role="button" class="button" style="display: none;"></a>
+                    <a role="button" class="button" style="display: none;"></a>
+                    <a role="button" class="button" style="display: none;"></a>
                 </div>
                 <p id="triviacheck">...</p>
             </div>
@@ -26,9 +26,40 @@
     </div>
     <script>
         // Variables
-        const question = document.getElementById('triviaquestion')
-        const options = document.getElementById('triviaquestions')
-        const category = document.getElementById('triviaquestiontype')
+        const question = document.getElementById('triviaquestion');
+        const category = document.getElementById('triviaquestiontype');
+        const buttons = document.querySelectorAll('a');
+        const progress = document.getElementById('triviaprogress')
+
+        let correctAnswer = "";
+        let correctScore = 0;
+        let totalQuestions = 10;
+
+        // Start everything when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            triviaQuestions();
+            buttonListener();
+            progress.innerHTML = correctScore + '/' + totalQuestions;
+        })
+
+        // For our "buttons", call the checkAnswer function when we press them
+       function buttonListener(){
+            buttons.forEach(button => {
+                button.classList.remove('selected');
+                button.addEventListener('click', () => {
+                    button.classList.add('selected');
+                    checkAnswer();
+                });
+            });
+        }
+
+        // Shuffle an array using the Fisher-Yates shuffle method (Stackflow moment)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
 
         // Import the data from OpenDB, thanks GeekProbin
         async function triviaQuestions() {
@@ -41,18 +72,26 @@
 
         // Display the questions and answers
         function displayQuestions(data) {
-            // Variables
-            let falseAnswers = data.incorrect_answers;
-            let trueAnswer = data.correct_answer;
-            let optionsDiv = falseAnswers
-
-            // Ordering and placing everything
-            //options.splice(Math.floor(Math.random() * (falseAnswers.length + 1)), 0, trueAnswer) broken
+            // Question and Category
             question.innerHTML = `${data.question}`;
             category.innerHTML = `${data.category}`;
+
+            // Answers, false and true, shuffle them as well
+            const answers = [data.correct_answer, ...data.incorrect_answers]
+            correctAnswer = data.correct_answer;
+            shuffleArray(answers)
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].style.display = "block";
+                buttons[i].textContent = answers[i];
+            }
+
         }
 
-        triviaQuestions()
+        // Check if our answer is correct, apply score, and then move onto next question
+        function checkAnswer(data) {
+            let clickedAnswer = document.querySelector('.selected');
+            alert("Answer pressed was " + clickedAnswer + " and the correct answer was " + correctAnswer);
+        }
     </script>
 </body>
 </html>
