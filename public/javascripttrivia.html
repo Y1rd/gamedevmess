@@ -30,22 +30,23 @@
         const category = document.getElementById('triviaquestiontype');
         const buttons = document.querySelectorAll('a');
         const progress = document.getElementById('triviaprogress')
+        const correct = document.getElementById('triviacheck')
 
         let correctAnswer = "";
         let correctScore = 0;
+        let doneQuestions = 0;
         let totalQuestions = 10;
 
         // Start everything when the page loads
         document.addEventListener('DOMContentLoaded', () => {
             triviaQuestions();
             buttonListener();
-            progress.innerHTML = correctScore + '/' + totalQuestions;
+            progress.innerHTML = doneQuestions + '/' + totalQuestions;
         })
 
         // For our "buttons", call the checkAnswer function when we press them
        function buttonListener(){
             buttons.forEach(button => {
-                button.classList.remove('selected');
                 button.addEventListener('click', () => {
                     button.classList.add('selected');
                     checkAnswer();
@@ -72,9 +73,9 @@
 
         // Display the questions and answers
         function displayQuestions(data) {
-            // Question and Category
-            question.innerHTML = `${data.question}`;
-            category.innerHTML = `${data.category}`;
+            // Question and Category, fix the weird bug with those characters
+            question.innerHTML = data.question.replace(/&#039;/g, "'");
+            category.innerHTML = data.category.replace(/&#039;/g, "'");
 
             // Answers, false and true, shuffle them as well
             const answers = [data.correct_answer, ...data.incorrect_answers]
@@ -83,14 +84,37 @@
             for (let i = 0; i < buttons.length; i++) {
                 buttons[i].style.display = "block";
                 buttons[i].textContent = answers[i];
+                buttons[i].textContent = answers[i].replace(/&#039;/g, "'");
             }
 
         }
 
         // Check if our answer is correct, apply score, and then move onto next question
+        // We also disable the our "buttons" using css to prevent it from being spammed
         function checkAnswer(data) {
-            let clickedAnswer = document.querySelector('.selected');
-            alert("Answer pressed was " + clickedAnswer + " and the correct answer was " + correctAnswer);
+            buttons.forEach(button => {
+                button.style.pointerEvents = "none";
+            });
+            let clickedAnswer = document.querySelector('.selected').innerHTML;
+            if (clickedAnswer === correctAnswer) {
+                correctScore = correctScore + 1;
+                doneQuestions = doneQuestions + 1;
+                correct.innerHTML = "Correct!";
+            } else {
+                console.log(correctScore);
+                doneQuestions = doneQuestions + 1;
+                correct.innerHTML = 'Incorrect, the right answer was ' + correctAnswer;
+            }
+            // After two seconds, we do everything again, until until 10 questions are done
+            setTimeout(() => {
+                progress.innerHTML = doneQuestions + '/' + totalQuestions;
+                correct.innerHTML = "...";
+                triviaQuestions();
+                buttons.forEach(button => {
+                    button.style.pointerEvents = "unset";
+                    button.classList.remove('selected');
+                });
+            }, 2000);
         }
     </script>
 </body>
