@@ -20,6 +20,7 @@
                     <a role="button" class="button" style="display: none;"></a>
                     <a role="button" class="button" style="display: none;"></a>
                 </div>
+                <a role="button" class="button" id="triviaretry" style="display: none;" onclick="restartGame()">Retry?</a>
                 <p id="triviacheck">...</p>
             </div>
         </div>
@@ -28,9 +29,10 @@
         // Variables
         const question = document.getElementById('triviaquestion');
         const category = document.getElementById('triviaquestiontype');
-        const buttons = document.querySelectorAll('a');
+        const buttons = triviabuttons.querySelectorAll('a');
         const progress = document.getElementById('triviaprogress')
         const correct = document.getElementById('triviacheck')
+        const retry = document.getElementById('triviaretry')
 
         let correctAnswer = "";
         let correctScore = 0;
@@ -77,7 +79,7 @@
             question.innerHTML = data.question.replace(/&#039;/g, "'");
             category.innerHTML = data.category.replace(/&#039;/g, "'");
 
-            // Answers, false and true, shuffle them as well
+            // Answers, incorrect and correct, shuffle them as well
             const answers = [data.correct_answer, ...data.incorrect_answers]
             correctAnswer = data.correct_answer;
             shuffleArray(answers)
@@ -101,20 +103,57 @@
                 doneQuestions = doneQuestions + 1;
                 correct.innerHTML = "Correct!";
             } else {
-                console.log(correctScore);
                 doneQuestions = doneQuestions + 1;
                 correct.innerHTML = 'Incorrect, the right answer was ' + correctAnswer;
             }
-            // After two seconds, we do everything again, until until 10 questions are done
-            setTimeout(() => {
-                progress.innerHTML = doneQuestions + '/' + totalQuestions;
-                correct.innerHTML = "...";
-                triviaQuestions();
-                buttons.forEach(button => {
-                    button.style.pointerEvents = "unset";
-                    button.classList.remove('selected');
-                });
-            }, 2000);
+            // If we are done
+            if (doneQuestions === 10) {
+                setTimeout(() => {
+                    progress.innerHTML = doneQuestions + '/' + totalQuestions;
+                    finishGame()
+                }, 2000);
+            } else {
+                // After two seconds, we do everything again, until until 10 questions are done
+                setTimeout(() => {
+                    progress.innerHTML = doneQuestions + '/' + totalQuestions;
+                    correct.innerHTML = "...";
+                    triviaQuestions();
+                    buttons.forEach(button => {
+                        button.style.pointerEvents = "unset";
+                        button.classList.remove('selected');
+                    });
+                }, 2000);
+            }
+        }
+
+        // The end, I guess
+        function finishGame() {
+            buttons.forEach(button => {
+                    button.style.display = "none";
+            });
+            category.innerHTML = "";
+            question.innerHTML = "";
+            correct.innerHTML = "Game over! You got a score of " + correctScore + "!"
+            retry.style.display = "block";
+        }
+
+        // Reset everything if the player tries again
+        function restartGame() {
+            // Reset Variables
+            correctAnswer = "";
+            correctScore = 0;
+            doneQuestions = 0;
+            totalQuestions = 10;
+
+            retry.style.display = "none";
+            correct.innerHTML = "..."
+            
+            // Restore Buttons
+            buttons.forEach(button => {
+                        button.style.pointerEvents = "unset";
+                        button.classList.remove('selected');
+                    });
+            triviaQuestions();
         }
     </script>
 </body>
