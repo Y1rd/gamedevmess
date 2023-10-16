@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Age Check</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="box">
+        <div class="boxcontent">
+            <h1>An age checker, done blindly!</h1>
+            <h2>(As in, I did it on paper.)</h2><br>
+            <div>
+                <input type="text" id="text1" placeholder="Fred">
+                <input type="text" id="text2" placeholder="36">
+                <a role="button" class="button" onclick="ageCheck()">Check</a>
+            </div>
+            <p id="output1">...</p>
+        </div>
+    </div>
+    <script>
+        // Actual Function
+        function ageCheck() {
+            const name = document.getElementById('text1').value;
+            const age = document.getElementById('text2').value;
+            const output = document.getElementById('output1');
+
+            // Really quick check
+            if ( !name || !age) {
+                output.textContent = "Did you not even put anything?"
+            } else {
+                // This looks, very, very ugly
+                // Remember I wrote this on paper though from memory
+                if (age <= 4) {
+                    output.textContent = "Hey " + name + ", you're a baby!"
+                }
+                if (age <= 12) {
+                    output.textContent = "Hey " + name + ", you're a child!"
+                }
+                if (age <= 17) {
+                    output.textContent = "Hey " + name + ", you're a teenager!"
+                }
+                if (age <= 50) {
+                    output.textContent = "Hey " + name + ", you're a adult!"
+                }
+                if (age >= 51) {
+                    output.textContent = "Hey " + name + ", you're really old..."
+                }
+            }
+        }
+    </script>
+</body>
+</html>
