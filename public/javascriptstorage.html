@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Local Storage</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="bigbox">
+        <div class="boxcontent">
+            <h1>A personal ToDo list!</h1>
+            <div class="boxcontentsmall">
+                <p>Try typing something and then saving/loading it. Uses localStorage.</p>
+                <input type="text" id="textbox" placeholder="Type something here!"><br>
+                <a role="button" class="button" onclick="storeText()">Save Text</a>
+                <a role="button" class="button" onclick="loadText()">Load Text</a>
+                <p id="notifier">...</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Variables
+        let storagetext = localStorage.getItem('storedtext');
+        const notifier = document.getElementById('notifier');
+
+        // When the page loads, make sure our storage isn't empty
+        document.addEventListener('DOMContentLoaded', () => {
+            if (storagetext != null) {
+                document.getElementById('textbox').value = storagetext;
+            }
+        })
+
+        // Save the text into the local storage
+        function storeText() {
+            localStorage.setItem('storedtext', document.getElementById('textbox').value)
+            notifier.innerHTML = "The text was saved!";
+            setTimeout(() => {
+                notifier.innerHTML = "...";
+            }, 2000);
+        }
+
+        // And of course, load it.
+        function loadText() {
+            document.getElementById('textbox').value = storagetext;
+            notifier.innerHTML = "Text was loaded!";
+            setTimeout(() => {
+                notifier.innerHTML = "...";
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
