@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+/* Global stying */
 body {
     background-color: #3d434f;
     background-image: linear-gradient(to top, #292d35, #3d434f);
@@ -25,18 +26,27 @@ ul {
 }
 th {
     font-size: 32px;
-    background-color: #879fa5;
-    border: #879fa5 8px solid;
+    background-color: var(--cozydark);
+    border: var(--cozydark) 8px solid;
     border-collapse: collapse;
 }
 tr:nth-child(even) {
-    background-color: #6e888f;
-    border: #6e888f 8px solid;
+    background-color: var(--cozycharcoal);
+    border: var(--cozycharcoal) 8px solid;
 }
 table {
     border-collapse: collapse;
 }
 
+/* Color Variables */
+:root {
+    --cozycharcoal: #61787e;
+    --cozydark: #879fa5;
+    --buttonblue: #add8e6;
+    --buttonhover: #d9eff7;
+}
+
+/* Specific elements and big b o x e s */
 #yirdimg {
     display: block;
     margin: auto;
@@ -44,6 +54,11 @@ table {
     border: white solid 2px;
     border-radius: 50%;
 }
+hr.divider {
+    border: solid 2px var(--cozydark);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
 .imgscale {
     max-width: 95%;
     max-height: 95%;
@@ -62,7 +77,7 @@ table {
     text-align: center;
     border-radius: 10px;
     border: 2px white solid;
-    background-color: #61787e;
+    background-color: var(--cozycharcoal);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .box {
@@ -75,7 +90,7 @@ table {
     text-align: center;
     border-radius: 10px;
     border: 2px white solid;
-    background-color: #61787e;
+    background-color: var(--cozycharcoal);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .smallbox {
@@ -87,7 +102,7 @@ table {
     text-align: center;
     border-radius: 10px;
     border: 2px white solid;
-    background-color: #61787e;
+    background-color: var(--cozycharcoal);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -111,11 +126,12 @@ table {
     margin-bottom: -4px;
 }
 
+/* Stuff for our buttons, uses <a> as a base */
 .buttonbox {
     margin: .6em;
 }
 .button {
-    background-color: #add8e6;
+    background-color: var(--buttonblue);
     font-size: 20px;
     display: inline-block;
     margin: auto;
@@ -131,7 +147,7 @@ table {
     user-select: none;
 }
 .button:hover {
-    background-color: #d9eff7;
+    background-color: var(--buttonhover);
     transition: ease .2s;
     color: #d1d1d1;
 }
@@ -153,7 +169,7 @@ table {
     grid-column: 1 / -1;
     align-content: center;
     background-color: gray;
-    border: solid 2px #879fa5;
+    border: solid 2px var(--cozycharcoal);
 }
 #currentoutput {
     font-size: 24px;
