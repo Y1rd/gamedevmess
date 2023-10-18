@@ -59,6 +59,11 @@ hr.divider {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     margin-bottom: 22px;
 }
+.divider {
+    border: solid 2px var(--cozydark);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin-bottom: 22px;
+}
 
 .imgscale {
     max-width: 95%;
