@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Array's</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="bigbox">
+        <div class="boxcontent">
+            <h1>Playing with Array's or something</h1>
+            <div class="boxcontentsmall">
+                <label>Max arrays: <input type="text" id="arrayMax" value="3"></label><br>
+                <a role="button" class="button" onclick="arrayFunction()">Click me or something</a><br>
+                <p id="text1">...</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Variables
+        let temp = document.getElementById('arrayMax');
+        let text = document.getElementById('text1');
+        let sum = '';
+        text.innerHTML = '...';
+
+        // Array stuff
+        array = new Array()
+        array[0] = 'Fred'
+        array[1] = 'Marry'
+        array[2] = 'Zizzy'
+
+        // Let's see if this works
+        function arrayFunction() {
+            for (let loop = 0; loop < parseInt(temp.value); loop++) {
+                sum += 'Loop #' + loop + ', Array Entry: ' + array[loop] + '<br>'
+            }
+            text.innerHTML = sum
+        }
+    </script>
+</body>
+</html>
