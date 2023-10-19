@@ -21,6 +21,7 @@
         // Variables
         let temp = document.getElementById('arrayMax');
         let text = document.getElementById('text1');
+        let button = document.querySelector('a')
         let sum = '';
         text.innerHTML = '...';
 
@@ -29,13 +30,26 @@
         array[0] = 'Fred'
         array[1] = 'Marry'
         array[2] = 'Zizzy'
+        array[3] = 'Ethan'
+        array[4] = 'Billy'
+        array[5] = 'Jorden'
+        array[6] = 'Coach'
+        array[7] = 'Yird'
+        array[8] = 'Alex'
+        array[9] = 'Steve'
 
         // Let's see if this works
         function arrayFunction() {
+            button.style.pointerEvents = 'none';
             for (let loop = 0; loop < parseInt(temp.value); loop++) {
-                sum += 'Loop #' + loop + ', Array Entry: ' + array[loop] + '<br>'
+                sum += 'Loop #' + loop + ', Array Entry: ' + array[loop] + '<br>';
             }
             text.innerHTML = sum
+            setTimeout(() => {
+                text.innerHTML = "...";
+                sum = '';
+                button.style.pointerEvents = 'unset';
+            }, 4000);
         }
     </script>
 </body>
