@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>More Classes</title>
+	<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+	<div class="bigbox">
+        <div class="boxcontent">
+            <h1>This ain't even finished blud.</h1>
+            <div class="boxcontentsmall">
+                <p>Try clicking that button for something.</p><br>
+                <a role="button" class="button" onclick="makeAppear()">Boo!</a><br>
+                <p id="hi">...</p>
+            </div>
+        </div>
+    </div>
+    <script>
+       // Variables
+       let text = document.getElementById('hi');
+       let person = {
+            firstName: "John",
+            lastName: "Doe",
+            age: "30",
+            eyeColor: "blue",
+       }
+
+        // Function
+        function makeAppear() {
+            text.innerHTML = "Hey " + person.firstName + " " + person.lastName + ". You're " + person.age + " years old. You have " + person.eyeColor + " colored eyes."
+        }
+    </script>
+</body>
+</html>
