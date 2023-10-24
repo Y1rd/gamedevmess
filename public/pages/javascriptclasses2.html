@@ -16,7 +16,11 @@
                 <label>First Name: <input class="firstname" type="text" placeholder="John"></label><br>
                 <label>Last Name: <input class="lastname" type="text" placeholder="Doe"></label><br>
                 <label>Age: <input class="age" type="text" placeholder="30"></label><br>
-                <label>Eye Color: <input class="eyecolor" type="text" placeholder="Blue"></label><br><br>
+                <label>Eye Color: <input class="eyecolor" type="text" placeholder="Blue"></label><br>
+                <label>Fav Fruit: <input class="fruit" type="text" placeholder="Blue"></label><br>
+                <label>Fav Sport: <input class="sport" type="text" placeholder="Blue"></label><br>
+                <label>Fav Friend: <input class="friend" type="text" placeholder="Blue"></label><br>
+                <label>Fav Song: <input class="song" type="text" placeholder="Blue"></label><br><br>
                 <a role="button" class="button" onclick="
                     const person = new personAgain(firstNameInput.value, lastNameInput.value, ageInput.value, eyeColorInput.value);
                     person.makeAppear();
@@ -31,14 +35,22 @@
         const lastNameInput = document.querySelector('.lastname');
         const ageInput = document.querySelector('.age');
         const eyeColorInput = document.querySelector('.eyecolor');
+        const fruitInput = document.querySelector('.fruit');
+        const sportInput = document.querySelector('.sport');
+        const friendInput = document.querySelector('.friend');
+        const songInput = document.querySelector('.song');
 
         let text = document.getElementById('hi');
         class personAgain {
-            constructor(firstName, lastName, age, eyeColor){
+            constructor(firstName, lastName, age, eyeColor, fruit, sport, friend, song){
                 this.firstName = firstName;
                 this.lastName = lastName;
                 this.age = age;
                 this.eyeColor = eyeColor;
+                this.fruit = fruit;
+                this.sport = sport;
+                this.friend = friend;
+                this.song = song;
             }
             
             // Well, you know, laziness
