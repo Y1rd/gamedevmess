@@ -9,44 +9,50 @@
 <body>
 	<div class="bigbox">
         <div class="boxcontent">
-            <h1>A personal ToDo list!</h1>
+            <h1>A personal list!</h1>
             <div class="boxcontentsmall">
-                <p>Try typing something and then saving/loading it. Uses localStorage.</p>
-                <input type="text" id="textbox" placeholder="Type something here!"><br>
-                <a role="button" class="button" onclick="storeText()">Save Text</a>
-                <a role="button" class="button" onclick="loadText()">Load Text</a>
+                <p>Add items, remove them, or save them. Uses localStorage.</p>
+                <input type="text" id="addList" placeholder="Add item..."><a role="button" class="button" onclick="storeText()">Add</a><br>
+                <ul class="customlist">
+                    <li class="finished">Test 1</li>
+                    <li>Test 2</li>
+                    <li>Test 3</li>
+                </ul>
                 <p id="notifier">...</p>
             </div>
         </div>
     </div>
     <script>
         // Variables
-        let storagetext = localStorage.getItem('storedtext');
+        let listStorage = localStorage.getItem('listText');
+        let listText = document.getElementsByTagName('li');
+        const listUl = document.querySelector('ul')
         const notifier = document.getElementById('notifier');
 
         // When the page loads, make sure our storage isn't empty
         document.addEventListener('DOMContentLoaded', () => {
-            if (storagetext != null) {
-                document.getElementById('textbox').value = storagetext;
+            // Handle adding the close buttons
+            for (i = 0; i < listText.length; i++) {
+                var span = document.createElement('span');
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close";
+                span.appendChild(txt);
+                span.onclick = closeList;
+               listText[i].appendChild(span);
             }
         })
 
-        // Save the text into the local storage
-        function storeText() {
-            localStorage.setItem('storedtext', document.getElementById('textbox').value)
-            notifier.innerHTML = "The text was saved!";
-            setTimeout(() => {
-                notifier.innerHTML = "...";
-            }, 2000);
-        }
+       // Toggle the crossout when clicking on a list item
+        listUl.addEventListener('click', function(event) {
+            if (event.target.tagName === 'LI') {
+                event.target.classList.toggle('finished');
+            }
+        });
 
-        // And of course, load it.
-        function loadText() {
-            document.getElementById('textbox').value = storagetext;
-            notifier.innerHTML = "Text was loaded!";
-            setTimeout(() => {
-                notifier.innerHTML = "...";
-            }, 2000);
+        // Get rid of a list item when we press the x button
+        function closeList() {
+            let listItem = this.parentElement;
+            listItem.remove()
         }
     </script>
 </body>
