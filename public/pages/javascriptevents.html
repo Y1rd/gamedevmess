@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Events</title>
+	<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+	<div class="box">
+        <div class="boxcontent">
+            <h1 id="cat">Events, lot's of 'em.</h1>
+            <div class="boxcontentsmall">
+                <p>Click the buttons to see things happen... I guess.</p>
+                <p>Letting you know this was speedran BTW</p>
+                <a role="button" class="button" onclick="document.getElementById('simple').innerHTML = 'Typical onClick event, nothing too interesting.'">On Click Event.</a>
+                <a role="button" class="button" onwheel="document.getElementById('simple').innerHTML = 'I can see you are scrolling, wise one.'" onclick="document.getElementById('simple').innerHTML = '...'">Hover me and scroll!</a>
+                <a role="button" class="button" onmouseout="document.getElementById('simple').innerHTML = 'Hey! Put your mouse back on me!'" onclick="document.getElementById('simple').innerHTML = '...'">Not hovering event</a>
+                <a role="button" class="button" oncontextmenu="document.getElementById('simple').innerHTML = 'Context menu, for what?'" onclick="document.getElementById('simple').innerHTML = '...'">Right Click Me!</a><br>
+                <img class="imgscale" src="../images/aerospace3.png" width="128" height="128" ondrag="document.getElementById('simple').innerHTML = 'Where am I going?'">
+                <p>Drag this image!</p><br>
+                <label>Type in here: <input type="text" onkeydown="document.getElementById('simple').innerHTML = 'To the beat!'"></label><br>
+                <p oncopy="document.getElementById('simple').innerHTML = 'Stealing something?'">Try copying this text.</p>
+                <label>Paste something in here: <input type="text" onpaste="document.getElementById('simple').innerHTML = 'Nice text there, may I read it?'"></label>
+            </div>
+            <p id="simple">...</p>
+        </div>
+    </div>
+</body>
+</html>

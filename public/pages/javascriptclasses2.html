@@ -9,7 +9,7 @@
 <body>
 	<div class="bigbox">
         <div class="boxcontent">
-            <h1>This ain't even finished blud.</h1>
+            <h1>Okay, it's finished now.</h1>
             <div class="boxcontentsmall">
                 <p>Trying putting some information in.</p>
                 <p>Literally Copy and Paste from the first one.</p>
@@ -17,10 +17,10 @@
                 <label>Last Name: <input class="lastname" type="text" placeholder="Doe"></label><br>
                 <label>Age: <input class="age" type="text" placeholder="30"></label><br>
                 <label>Eye Color: <input class="eyecolor" type="text" placeholder="Blue"></label><br>
-                <label>Fav Fruit: <input class="fruit" type="text" placeholder="Blue"></label><br>
-                <label>Fav Sport: <input class="sport" type="text" placeholder="Blue"></label><br>
-                <label>Fav Friend: <input class="friend" type="text" placeholder="Blue"></label><br>
-                <label>Fav Song: <input class="song" type="text" placeholder="Blue"></label><br><br>
+                <label>Fav Fruit: <input class="fruit" type="text" placeholder="Apple"></label><br>
+                <label>Fav Sport: <input class="sport" type="text" placeholder="Basketball"></label><br>
+                <label>Fav Friend: <input class="friend" type="text" placeholder="Bob"></label><br>
+                <label>Fav Song: <input class="song" type="text" placeholder="ABC"></label><br><br>
                 <a role="button" class="button" onclick="
                     const person = new personAgain(firstNameInput.value, lastNameInput.value, ageInput.value, eyeColorInput.value);
                     person.makeAppear();
@@ -55,10 +55,10 @@
             
             // Well, you know, laziness
             makeAppear() {
-                if (!firstNameInput.value || !lastNameInput.value || !ageInput.value || !eyeColorInput.value) {
+                if (!firstNameInput.value || !lastNameInput.value || !ageInput.value || !eyeColorInput.value || !fruitInput.value || !friendInput.value || !songInput.value) {
                     text.innerHTML = "Seriously?"
                 } else {
-                    text.innerHTML = "Hey " + this.firstName + " " + this.lastName + ". You're " + this.age + " years old. You have " + this.eyeColor + " colored eyes."
+                    text.innerHTML = "Hey " + this.firstName + " " + this.lastName + ". You're " + this.age + " years old. You have " + this.eyeColor + " colored eyes. You like " + this.fruit + " as a fruit chose. You enjoy " + this.sport + " and have a friend named " + this.friend + ". You love the song " + this.song + "!"
                 }
             }
         }
