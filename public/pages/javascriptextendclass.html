@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Extending</title>
+	<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+	<div class="bigbox">
+        <div class="boxcontent">
+            <h1>Extending the classes.</h1>
+            <div class="boxcontentsmall">
+                <p>Currently broken.</p>
+                <label>Animal Name: <input id="namepass" type="text" placeholder="Rex"></label><br>
+                <label>Animal Age: <input id="agepass" type="text" placeholder="6"></label><br>
+                <a role="button" class="button" onclick="
+                    const animal = new coolAnimal(nametext.value, agetext.value);
+                    animal.makeAppear();
+                ">Amazing Button</a><br>
+                <p id="hi">...</p>
+            </div>
+        </div>
+    </div>
+    <script>    
+        // Variables
+        const nametext = document.getElementById('namepass');
+        const agetext = document.getElementById('agepass');
+        let text = document.getElementById('hi');
+
+        class coolAnimal {
+            constructor(namePass, agePass){
+                this.name = namePass;
+                this.age = agePass;
+            }
+            
+            makeAppear() {
+                if (!nametext.value || !agetext.value) {
+                    text.innerHTML = "Seriously?"
+                } else {
+                    text.innerHTML = "Hey " + this.name + ". You're " + this.age + " years old.";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
