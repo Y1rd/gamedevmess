@@ -127,11 +127,6 @@ hr.divider {
     font-size: 24px;
     margin-bottom: -4px;
 }
-.descriptiontext {
-    color: white;
-    font-size: 22px;
-    margin-bottom: -4px;
-}
 
 /* Stuff for our buttons, uses <a> as a base */
 .buttonbox {
@@ -231,3 +226,36 @@ li.finished {
     background-color: #f44336;
     color: white;
   }
+
+/* Tooltip stuff for the index page */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+  
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 240px;
+    background-color: var(--cozydark);
+    border: solid 2px white;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    padding: 5px 0;
+    border-radius: 10px;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -120px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
