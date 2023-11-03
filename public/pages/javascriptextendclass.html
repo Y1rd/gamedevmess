@@ -9,15 +9,21 @@
 <body>
 	<div class="bigbox">
         <div class="boxcontent">
-            <h1>Extending the classes.</h1>
+            <h1>Small working prototype. Second button includes 3rd textbox.</h1>
             <div class="boxcontentsmall">
                 <p>Currently broken.</p>
                 <label>Animal Name: <input id="namepass" type="text" placeholder="Rex"></label><br>
                 <label>Animal Age: <input id="agepass" type="text" placeholder="6"></label><br>
+                <label>Actual Animal (seperate): <input id="animalpass" type="text" placeholder="Dog"></label><br>
                 <a role="button" class="button" onclick="
                     const animal = new coolAnimal(nametext.value, agetext.value);
                     animal.makeAppear();
                 ">Amazing Button</a><br>
+                <a role="button" class="button" onclick="
+                const animal2 = new coolAnimal(nametext.value, agetext.value);
+                const realanimal = new animalType(nametext.value, agetext.value, animaltext.value)
+                realanimal.newAppear();
+            ">Amazing Button #2</a><br>
                 <p id="hi">...</p>
             </div>
         </div>
@@ -26,8 +32,10 @@
         // Variables
         const nametext = document.getElementById('namepass');
         const agetext = document.getElementById('agepass');
+        const animaltext = document.getElementById('animalpass');
         let text = document.getElementById('hi');
 
+        // Simple class
         class coolAnimal {
             constructor(namePass, agePass){
                 this.name = namePass;
@@ -41,6 +49,21 @@
                     text.innerHTML = "Hey " + this.name + ". You're " + this.age + " years old.";
                 }
             }
+        }
+
+        // Now, an extended class
+        class animalType extends coolAnimal {
+            constructor(namePass, agePass, animalPass) {
+                super(namePass, agePass);
+                this.animal = animalPass;
+            }
+            newAppear() {
+                if (!nametext.value || !agetext.value || !animaltext.value) {
+                    text.innerHTML = "Seriously?"
+                } else {
+                    text.innerHTML = "Hey " + this.name + ". You're " + this.age + " years old. You're a " + this.animal;
+                }
+            } 
         }
     </script>
 </body>
