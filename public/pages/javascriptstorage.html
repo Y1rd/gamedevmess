@@ -13,7 +13,6 @@
             <h1>A personal list!</h1>
             <div class="boxcontentsmall">
                 <p>Add items, remove them, or save them. Uses localStorage and saves on the fly.</p>
-                <p>Currently a little buggy, will fix later.</p>
                 <input type="text" id="addList" placeholder="Add item..."><a role="button" class="button" onclick="addText()">Add</a><br>
                 <ul class="customlist">
                 </ul>
@@ -46,6 +45,7 @@
         listUl.addEventListener('click', function(event) {
             if (event.target.tagName === 'LI') {
                 event.target.classList.toggle('finished');
+                saveText();
             }
         });
 
@@ -125,6 +125,9 @@
                     span.appendChild(xsymbol);
                     span.onclick = closeList;
                     newList.appendChild(span);
+                } else {
+                    let existingSpan = newList.querySelector('.close');
+                    existingSpan.addEventListener('click', closeList);
                 }
             }
 
