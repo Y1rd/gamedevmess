@@ -5,6 +5,7 @@
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   	<title>Local Storage</title>
 	<link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="../list.css">
 </head>
 <body>
 	<div class="bigbox">
@@ -30,13 +31,13 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Handle adding the close buttons
             let listText = document.querySelectorAll('li');
-            for (i = 0; i < listText.length; i++) {
+            for (let i = 0; i < listText.length; i++) {
                 var span = document.createElement('span');
                 var xsymbol = document.createTextNode("\u00D7");
                 span.className = "close";
                 span.appendChild(xsymbol);
                 span.onclick = closeList;
-               listText[i].appendChild(span);
+                listText[i].appendChild(span);
             }
             loadText()
         })
@@ -70,37 +71,54 @@
             span.appendChild(xsymbol);
             span.onclick = closeList;
             newList.appendChild(span);
+
+            saveText();
         }
 
         // Saves all the list items to local storage, can be called whenever needed
         function saveText() {
             // Move some variables into here so they are updated
             let listText = document.querySelectorAll('li');
-            let listStorage = JSON.parse(localStorage.getItem('listText')) || [];
-            listStorage.length = 0;
+            let listStorage = [];
 
-            for (i = 0; i < listText.length; i++) {
-                listStorage.push(listText[i].innerHTML)
+            // Push the text and finished class to storage
+            for (let i = 0; i < listText.length; i++) {
+                listStorage.push({  
+                    html: listText[i].innerHTML,
+                    className: listText[i].classList.value
+                });
             }
-            console.log(listStorage)
-            localStorage.setItem('listText', JSON.stringify(listStorage))
-            console.log(listStorage)    
+
+            localStorage.setItem('listText', JSON.stringify(listStorage));
         }
+
         // Loads all items from local storage, for when the page loads
         function loadText() {
             let listStorage = JSON.parse(localStorage.getItem('listText')) || [];
 
             // If the localstorage is empty, load some defaults
             if (listStorage.length === 0) {
-                listStorage.push("Make the basic list", "Make everything functional", "Add saving function");
+                listStorage.push({
+                        html: "Make the basic list",
+                        className: ""
+                }, {
+                        html: "Make everything functional",
+                        className: ""
+                }, {
+                        html: "Add saving function",
+                        className: ""
+                });
             }
 
-            // Add elements for everything in the storage
+            // Load elements from the localstorage
             for (let i = 0; i < listStorage.length; i++) {
                 let newList = document.createElement('li');
-                newList.innerHTML = listStorage[i];
+                newList.innerHTML = listStorage[i].html;
+                newList.className = listStorage[i].className;
                 listUl.appendChild(newList);
-                if (!newList.classList.contains(close)) {
+
+                // Only add a close element if it doesn't have one
+                if (!newList.querySelector('.close')) {
                     var span = document.createElement('span');
                     var xsymbol = document.createTextNode("\u00D7");
                     span.className = "close";
@@ -108,6 +126,11 @@
                     span.onclick = closeList;
                     newList.appendChild(span);
                 }
+            }
+
+            // If it has the finished class saved, then apply it on loading
+            if (newList.classList.contains('finished')) {
+                newList.classList.add('finished');
             }
         }
     </script>

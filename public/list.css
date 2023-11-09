@@ -1,0 +1,36 @@
+/* Styling for the custom list */
+.customlist {
+    display: block;
+    margin: auto;
+    margin-bottom: 16px;
+    list-style: none;
+    cursor: pointer;
+    font-size: 26px;
+    width: 20em;
+    background-color: var(--cozydark);
+    user-select: none;
+}
+li {
+    text-align: left;
+    padding: 10px 0 10px 0
+}
+li:nth-child(odd) {  
+    background: #7f959b;
+}
+li:hover {
+    background-color: var(--buttonblue);
+}
+li:nth-child(odd):hover {  
+    background-color: var(--buttonblue);
+}
+li.finished {
+    text-decoration: line-through;
+}
+.close {
+    float: right;
+    margin-right: 16px;
+}
+.close:hover {
+    background-color: #f44336;
+    color: white;
+  }
