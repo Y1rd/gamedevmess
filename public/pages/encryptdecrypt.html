@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Encryption</title>
+	<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+	<div class="box">
+        <div class="boxcontent">
+            <h1>Potato Quality Encryption</h1>
+            <p>Just mess around.</p>
+            <div>
+                <textarea id="area1" rows="4" cols="70">The quick brown fox jumps over the lazy dog.</textarea>
+                <a role="button" class="button" onclick="encryption()">Encrypt (Base64)</a>
+                <br>
+                <textarea id="area2" rows="4" cols="70"></textarea>
+                <a role="button" class="button" onclick="decryption()">Decrypt (Base64)</a>
+                </div>
+        </div>
+    </div>
+    <script>
+        // Variables, except most change on the fly
+        let temp;
+
+        // Encryption
+        function encryption() {
+            let string = document.getElementById('area1').value
+            temp = btoa(string);
+            document.getElementById('area2').value = temp
+            temp = "";
+        }
+
+        // Decryption
+        function decryption() {
+            let string2 = document.getElementById('area2').value
+            temp = atob(string2)
+            document.getElementById('area1').value = temp
+            temp = "";
+        }
+    </script>
+</body>
+</html>
