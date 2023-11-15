@@ -10,34 +10,65 @@
 	<div class="box">
         <div class="boxcontent">
             <h1>Potato Quality Encryption</h1>
-            <p>Just mess around.</p>
+            <p>Just mess around. More methods soon.</p>
             <div>
-                <textarea id="area1" rows="4" cols="70">The quick brown fox jumps over the lazy dog.</textarea>
-                <a role="button" class="button" onclick="encryption()">Encrypt (Base64)</a>
+                <textarea id="area1" rows="4" cols="70" style="resize: none;">The quick brown fox jumps over the lazy dog.</textarea>
                 <br>
-                <textarea id="area2" rows="4" cols="70"></textarea>
-                <a role="button" class="button" onclick="decryption()">Decrypt (Base64)</a>
+                <a role="button" class="button" onclick="type = 'base64';encryption(type)">Encrypt (Base64)</a>
+                <a role="button" class="button" onclick="type = 'caeser';encryption(type)">Encrypt (Caeser)</a>
+                <br>
+                <textarea id="area2" rows="4" cols="70" style="resize: none;"></textarea>
+                <br>
+                <a role="button" class="button" onclick="type = 'base64';decryption(type)">Decrypt (Base64)</a>
+                <a role="button" class="button" onclick="type = 'caeser';decryption(type)">Decrypt (Caeser)</a>
                 </div>
         </div>
     </div>
     <script>
-        // Variables, except most change on the fly
+        // Variables, don't need to be placed within function
         let temp;
+        let type;
 
         // Encryption
-        function encryption() {
+        function encryption(type) {
             let string = document.getElementById('area1').value
-            temp = btoa(string);
-            document.getElementById('area2').value = temp
-            temp = "";
+            switch(type) {
+                // Use btoa to encode text into base64
+                case 'base64':
+                    temp = btoa(string);
+                    document.getElementById('area2').value = temp
+                    temp = "";
+                    break;
+                // I stole this from stackflow, but it's simple
+                case 'caeser':
+                    const original = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                    const cipher = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
+                    temp = string.replace(/[a-z]/gi, letter => cipher[original.indexOf(letter)]);
+                    document.getElementById('area2').value = temp
+                    temp = "";
+                    break;
+            }
         }
 
         // Decryption
-        function decryption() {
+        function decryption(type) {
             let string2 = document.getElementById('area2').value
-            temp = atob(string2)
-            document.getElementById('area1').value = temp
-            temp = "";
+            switch(type) {
+                // Use atob to decode from base64
+                case 'base64':
+                    temp = atob(string2)
+                    document.getElementById('area1').value = temp
+                    temp = "";
+                    break;
+                // Just do it in reverse, and tada!
+                case 'caeser':
+                    const original = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                    const cipher = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
+                    temp = string2.replace(/[a-z]/gi, letter => original[cipher.indexOf(letter)]);
+                    document.getElementById('area1').value = temp
+                    temp = "";
+                    break;
+            }
         }
     </script>
 </body>
