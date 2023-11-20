@@ -4,37 +4,90 @@
     <meta charset="UTF-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   	<title>Moving Background</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
-<body id="myBody" style="background-repeat:repeat; background-size: 80%;" background="../images/cat2.jpg">
-	<div class="box">
+<body id="bodyalt" style="background-repeat:repeat; background-size: 80%; background-image: url(../images/evening-sky.png);">
+  <div>
+    <div class="box">
         <div class="boxcontent">
-            <h1>Animation using javascript and CSS. CODE WILL BE CLEANED UP LATER IM LAZY AND TIRED.</h1>
-            <input id="myButton01" type=button value="background move left" onclick="{
-                myTemp = '100px 0px'
-                myGlobalX -= 5
-                myTemp =  myGlobalX + 'px 0px'
-                document.getElementById('myBody').style.backgroundPosition = myTemp
-              
-              }">
-              
-              <input type=button value="Auto Background Left" onclick="{
-                clearInterval(myClock)
-                myClock = setInterval(function(){
-                   document.getElementById('myButton01').click() 
-                }, 100)
-                  
-              }">
-              
-              <input type=button value="Image Right" onclick="{
-                document.getElementById('myImage01').style.left = parseInt(document.getElementById('myImage01').style.left) + 10 + 'px'
-              }"><br><br>
-              
-              <img id="myImage01" style="position:relative; width:100px; height:80px; top:0px; left:0px;" src="../images/cat1.jpg">
+            <h1><i>"Slide to the right!"</i></h1>
+            <p>Move the background or the image, it's animation testing.</p>
+            <a role="button" class="button" id="leftbutton" onclick="moveBackground('left')">Left (-10)</a>
+            <a role="button" class="button" id="rightbutton" onclick="moveBackground('right')">Right (+10)</a>
+            <br>
+            <a role="button" class="button" onclick="autoMoveBackground('left')">Left (Auto)</a>
+            <a role="button" class="button" onclick="autoMoveBackground('right')">Right (Auto)</a>
+            <a role="button" class="button" onclick="autoMoveBackground('stop')">Stop</a>
+            <br>
+            <a role="button" class="button" onclick="moveImage('left')">Img (-10)</a>
+            <a role="button" class="button" onclick="moveImage('right')">Img (+10)</a>
+            <br>
         </div>
-  	</div>
+        <div class="boxcontent">
+            <img id="cat" style="position:relative; width:100px; height:80px; top:0px; left:0px;" alt="Orange cat sleeping." src="../images/cat1.jpg">
+        </div>
+  </div>
+  </div>
     <script>
-        let myGlobalX = 0
-        let myClock
+        // Variables
+        const eveningsky = document.getElementById('bodyalt');
+        const cat = document.getElementById('cat')
+        let globalx = 0
+        let clock
+        let temp
+
+        // Moves the background depending on the direction given
+        // Getting to learn case functions better, very useful honestly
+        function moveBackground(direction){
+            switch(direction) {
+                case 'left':
+                    temp = '100px 0px';
+                    globalx -= 10;
+                    temp = globalx + 'px 0px';
+                    eveningsky.style.backgroundPosition = temp;
+                    break;
+                case 'right':
+                    temp = '100px 0px';
+                    globalx += 10;
+                    temp = globalx + 'px 0px';
+                    eveningsky.style.backgroundPosition = temp;
+                    break;
+            }
+        }
+
+        // Moves the background by itself by repeatingly pressing the buttons
+        function autoMoveBackground(direction){
+            switch(direction) {
+                case 'left':
+                    clearInterval(clock);
+                    clock = setInterval(function(){
+                    document.getElementById('leftbutton').click() ;
+                    }, 100)
+                    break;
+                case 'right':
+                    clearInterval(clock);
+                    clock = setInterval(function(){
+                    document.getElementById('rightbutton').click();
+                    }, 100);
+                    break;
+                case 'stop':
+                    clearInterval(clock);
+                    clock = '';
+                    break;
+            }
+        }
+
+        //
+        function moveImage(direction) {
+            switch(direction) {
+                case 'left':
+                    cat.style.left = parseInt(cat.style.left) - 10 + 'px';
+                    break;
+                case 'right':
+                    cat.style.left = parseInt(cat.style.left) + 10 + 'px';
+                    break;
+            }
+        }
     </script>
 </body>
 </html>
