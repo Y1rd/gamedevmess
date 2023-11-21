@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Wow!</title>
+	<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+	<div class="box">
+        <div class="boxcontent">
+            <h1>For Loop Example (Paper Test)</h1>
+            <button onclick="exampleFunction()">Click me!</button>
+            <br>
+            <p id="text">...</p>
+        </div>
+    </div>
+    <script>
+        // Variables
+        const names = ["Tom", "Fred", "Marry"]
+        let text = document.getElementById('text')
+
+        // Example for loop function
+        function exampleFunction() {
+            text.innerHTML = ""
+            for (let i in names) {
+                if (names[i] === "Fred") {
+                    text.innerHTML = text.innerHTML + names[i] + "(Wow!) "
+                } else {
+                    text.innerHTML = text.innerHTML + names[i] + " "
+                }
+            }
+            setTimeout(() => {
+                    text.innerHTML = "..."
+                }, 3000)
+        }
+    </script>
+</body>
+</html>

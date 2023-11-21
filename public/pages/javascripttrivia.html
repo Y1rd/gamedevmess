@@ -86,8 +86,8 @@
             category.innerHTML = decodeHtmlEntities(data.category);
 
             // Answers, incorrect and correct, shuffle them as well
-            const answers = [data.correct_answer, ...data.incorrect_answers]
-            correctAnswer = data.correct_answer;
+            const answers = [decodeHtmlEntities(data.correct_answer), ...decodeHtmlEntities(data.incorrect_answers)]
+            correctAnswer = decodeHtmlEntities(data.correct_answer);
             shuffleArray(answers)
             for (let i = 0; i < buttons.length; i++) {
                 buttons[i].style.display = "block";
