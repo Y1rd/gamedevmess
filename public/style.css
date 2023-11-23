@@ -8,6 +8,22 @@ likely the page design will be updated to use these colors better
     --buttonhover: #a9dbff;
     --border: #00487c;
     #0D1317
+    
+    :root[data-theme="light"] {
+  --text: #000000;
+  --background: #e8eef2;
+  --primary: #026bb6;
+  --secondary: #003357;
+  --accent: #85ccff;
+}
+:root[data-theme="dark"] {
+  --text: #ffffff;
+  --background: #0d1317;
+  --primary: #49b2fd;
+  --secondary: #a8dbff;
+  --accent: #00477a;
+}
+
 */
 
 /* Background, along with an alternative used only on the animation page. */
