@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Lists & Forms</title>
+	<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+	<div class="bigbox">
+        <div class="boxcontent">
+            <h1>Canvas Drawings</h2>
+            <p>You use loops and variables to make fast fancy drawings. Expanded by me!</p>
+            <h3>Position:</h3>
+            <p>Oh yeah, the canvas is 1000 x 600. Not everything respects the postion, yet...</p>  
+            <label>X: <input id="xpos" type=number value="0"></label><br>
+            <label>Y: <input id="ypos" type=number value="0"></label><br>
+            <h3>Drawings:</h3>
+            <input type=button value="Line" onclick="drawStuff('line')">
+            <input type=button value="Green Arc" onclick="drawStuff('arc')">
+            <input type=button value="'Hello world!' Text" onclick="drawStuff('text')">
+            <input type=button value="Cool Curve" onclick="drawStuff('curve')">
+            <input type=button value="Gradient Box" onclick="drawStuff('gradient')"><br><br>
+            <input type=button value="Blank Box" onclick="drawStuff('blank')">
+            <input type=button value="Clear All" onclick="drawStuff('clear')"><br><br>
+
+            <canvas id="canvas" width="1000" height="600" style="border:1px solid #000000; background-color: white; width: 95%;"></canvas>
+
+            <script>
+            // Variables
+            let canvas = document.getElementById('canvas');
+            let plain = canvas.getContext('2d');
+
+            // Function which contains all the drawings
+            function drawStuff(type) {
+                // Call the current values of our x and y positions
+                let xpos = document.getElementById('xpos').value
+                let ypos = document.getElementById('ypos').value
+                
+                // Apply position to drawings
+                switch(type) {
+                    case 'line':
+                        // Stuck in a set position for now...
+                        plain.beginPath();
+                        plain.lineWidth = 1;
+                        plain.moveTo(xpos, ypos);
+                        plain.lineTo(30, 200);
+                        plain.stroke();
+                        break;
+                    case 'arc':
+                        plain.beginPath();
+                        plain.lineWidth = 10;
+                        plain.strokeStyle = 'green';
+                        plain.arc(95, 50, 40, 0, 2 * Math.PI);
+                        plain.stroke();
+                        break;
+                    case 'text':
+                        plain.font = '20px Arial';
+                        plain.fillText('Hello World', xpos, ypos);
+                        plain.rotate(60 * Math.PI / 180); 
+                        plain.fillText('Hello World', xpos, ypos);
+                        plain.stroke();
+                        plain.resetTransform();
+                        break;
+                    case 'gradient':
+                        let gradient = plain.createLinearGradient(100, 300, 200, 400);
+                        gradient.addColorStop(0, 'red');
+                        gradient.addColorStop(0.5, 'blue');
+                        gradient.addColorStop(1, 'yellow');
+
+                        plain.fillStyle = gradient;
+                        plain.fillRect(xpos, ypos, 200, 400);
+                        plain.fillStyle = 'black';
+                        break;
+                    case 'curve':
+                        plain.beginPath();
+                        plain.moveTo(xpos,ypos);
+                        plain.quadraticCurveTo(100,220,240,110);
+                        plain.stroke();
+                        break;
+                    case 'blank':
+                        plain.clearRect(xpos, ypos, 50, 50);
+                        break;
+                    case 'clear':
+                        plain.clearRect(0, 0, canvas.width, canvas.height);
+                        break;
+                }
+            }
+            </script>
+        </div>
+	</div>
+</body>
+</html>
