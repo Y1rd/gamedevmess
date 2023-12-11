@@ -11,7 +11,13 @@ let isJumping = false
 let isCrouching = false
 
 let yVelocity = 0
-let speed = 8
+
+let GroundSpeed
+let speed = 0.046875
+let decelerationspeed = .5
+let topspeed = 6
+let friction = 0.046875
+
 let jumpStrength = 16
 let gravity = .5
 
@@ -71,41 +77,52 @@ function movementCrouch() {
 function movePlayer(){
     if (!playerIsDead) {
         let img = document.getElementById('player')
-
         // Apply gravity
-        yVelocity += gravity; // Adjust this value for desired gravity strength
-        y += yVelocity;
-
-        // Restrain player from falling through the bottom of the screen
+        yVelocity += gravity
+        y += yVelocity
+        // Restrain player from falling through the bottom of the screen for now
         if (y > window.innerHeight - img.height) {
-            y = window.innerHeight - img.height;
-            yVelocity = 0; // Reset vertical velocity on the ground
+            y = window.innerHeight - img.height
+            yVelocity = 0
             isJumping = false
         }
-
         // Handle left and right movement speed
         if (movingright){
-            x = x + speed
+            if (GroundSpeed < 0) {
+                GroundSpeed += decelerationspeed;
+                if (GroundSpeed >= 0) GroundSpeed = 0.5;
+            } else if (GroundSpeed < topspeed) {
+                GroundSpeed += speed;
+                if (GroundSpeed >= topspeed) GroundSpeed = topspeed;
+            }
         }
         if (movingleft){
-            x = x - speed
+            if (GroundSpeed > 0) {
+                GroundSpeed -= decelerationspeed;
+                if (GroundSpeed <= 0) GroundSpeed = -0.5;
+            } else if (GroundSpeed > -topspeed) {
+                GroundSpeed -= speed;
+                if (GroundSpeed <= -topspeed) GroundSpeed = -topspeed;
+            }
         }
-        
+        // Decelerate when not moving left or right
+        if (!movingleft && !movingright) {
+            GroundSpeed -= Math.min(Math.abs(GroundSpeed), friction) * Math.sign(GroundSpeed);
+        }
         movementCrouch()
-
-        // Adjust the image position as needed
-        img.style.top = y + 'px';
-        img.style.left = x + 'px';
+        x += GroundSpeed;
+        // Move's the image on screen
+        img.style.top = y + 'px'
+        img.style.left = x + 'px'
+        // Call other functions
         window.requestAnimationFrame(movePlayer)
-        testCollide()
-        myCheckHit()
     }
 }
 window.requestAnimationFrame(movePlayer)
 
 
-// Collision Checks
-function myHitOther(my1,my2){
+// Checks the collision between two objections
+function collisionDetect(my1,my2){
     left1   = parseInt(document.getElementById(my1).style.left)
     right1  = left1 + parseInt(document.getElementById(my1).style.width)
     top1    = parseInt(document.getElementById(my1).style.top)   
@@ -122,23 +139,10 @@ function myHitOther(my1,my2){
     }
 }
 
-// Yeah
-function testCollide() {
+// Detect collision for any elements, wiether it'd
+function collisionDetect2() {
     if (myHitOther('player', 'myImg02')) {
-        // If colliding with the box, adjust the player's position
-        let img = document.getElementById('player');
-        let box = document.querySelector('.collisionbox');
-
-        if (y + img.height > box.offsetTop) {
-            // Player is on or below the box, move the player above the box
-            y = box.offsetTop - img.height;
-            yVelocity = 0;
-            isJumping = false;
-        } else {
-            // Player is above the box, move the player below the box
-            y = box.offsetTop + box.offsetHeight;
-            yVelocity = 0;
-        }
+        alert("Player hit box.")
     }
 }
 
