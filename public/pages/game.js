@@ -12,7 +12,7 @@ let isCrouching = false
 
 let yVelocity = 0
 
-let GroundSpeed
+let playerSpeed = 0
 let speed = 0.046875
 let decelerationspeed = .5
 let topspeed = 6
@@ -35,7 +35,7 @@ function movementStart(e){
     }
     if (e.keyCode === 40 /*down*/ || e.keyCode === 83 /*s*/){
         isCrouching = true
-        movementCrouch()
+        // Disabled
     }
     if (e.keyCode === 37 /*left*/ || e.keyCode === 65 /*a*/){
         movingleft = true
@@ -50,12 +50,14 @@ function movementEnd(e){
     }
     if (e.keyCode === 40 /*down*/ || e.keyCode === 83 /*s*/){
         isCrouching = false
-        movementCrouch()
+        // Disabled
     }
     if (e.keyCode === 37 /*left*/ || e.keyCode === 65 /*a*/){
         movingleft = false
     }
 }
+
+// Handles jumping, will be changed to emulate classic sonic
 function movementJump() {
     let img = document.getElementById('player')
     if (!isJumping && y === window.innerHeight - img.height) {
@@ -64,64 +66,63 @@ function movementJump() {
         yVelocity = -12; // Adjust this value for desired jump strength
     }
 }
+// Handles crouching
 function movementCrouch() {
-    let img = document.getElementById('player')
-    if (isCrouching) {
-        img.style.height = '60px'
-    } else {
-        img.style.height = '80px'
-    }
+    // Rewriting this code to make the crouch animation play and prevent movement...
+    // Or, incase we are moving, activate a spindash
 }
 
-// Actually moves our image if flags are true, uses a speed variable so it can easily be adjusted
-function movePlayer(){
+// Handles the movement of the player, along with gravity, and other forms of movement
+function movePlayer() {
     if (!playerIsDead) {
-        let img = document.getElementById('player')
+        let img = document.getElementById('player');
         // Apply gravity
-        yVelocity += gravity
-        y += yVelocity
+        yVelocity += gravity;
+        y += yVelocity;
         // Restrain player from falling through the bottom of the screen for now
         if (y > window.innerHeight - img.height) {
-            y = window.innerHeight - img.height
-            yVelocity = 0
-            isJumping = false
+            y = window.innerHeight - img.height;
+            yVelocity = 0;
+            isJumping = false;
         }
         // Handle left and right movement speed
-        if (movingright){
-            if (GroundSpeed < 0) {
-                GroundSpeed += decelerationspeed;
-                if (GroundSpeed >= 0) GroundSpeed = 0.5;
-            } else if (GroundSpeed < topspeed) {
-                GroundSpeed += speed;
-                if (GroundSpeed >= topspeed) GroundSpeed = topspeed;
+        // Sonic Physics guide my beloved
+        if (movingright) {
+            if (playerSpeed < 0) {
+                playerSpeed += decelerationspeed;
+                if (playerSpeed >= 0) playerSpeed = 0.5;
+            } else if (playerSpeed < topspeed) {
+                playerSpeed += speed;
+                if (playerSpeed >= topspeed) playerSpeed = topspeed;
             }
         }
-        if (movingleft){
-            if (GroundSpeed > 0) {
-                GroundSpeed -= decelerationspeed;
-                if (GroundSpeed <= 0) GroundSpeed = -0.5;
-            } else if (GroundSpeed > -topspeed) {
-                GroundSpeed -= speed;
-                if (GroundSpeed <= -topspeed) GroundSpeed = -topspeed;
+        if (movingleft) {
+            if (playerSpeed > 0) {
+                playerSpeed -= decelerationspeed;
+                if (playerSpeed <= 0) playerSpeed = -0.5;
+            } else if (playerSpeed > -topspeed) {
+                playerSpeed -= speed;
+                if (playerSpeed <= -topspeed) playerSpeed = -topspeed;
             }
         }
         // Decelerate when not moving left or right
         if (!movingleft && !movingright) {
-            GroundSpeed -= Math.min(Math.abs(GroundSpeed), friction) * Math.sign(GroundSpeed);
+            playerSpeed -= Math.min(Math.abs(playerSpeed), friction) * Math.sign(playerSpeed);
         }
-        movementCrouch()
-        x += GroundSpeed;
-        // Move's the image on screen
-        img.style.top = y + 'px'
-        img.style.left = x + 'px'
-        // Call other functions
-        window.requestAnimationFrame(movePlayer)
+        x += playerSpeed;
+        img.style.top = y + 'px';
+        img.style.left = x + 'px';
     }
 }
-window.requestAnimationFrame(movePlayer)
-
+// Overall game loop function that keeps everything running
+function gameLoop() {
+    movePlayer()
+    window.requestAnimationFrame(gameLoop)
+}
+window.requestAnimationFrame(gameLoop)
 
 // Checks the collision between two objections
+// Legacy Code
 function collisionDetect(my1,my2){
     left1   = parseInt(document.getElementById(my1).style.left)
     right1  = left1 + parseInt(document.getElementById(my1).style.width)
@@ -136,13 +137,6 @@ function collisionDetect(my1,my2){
         (left1   <=  right2 ) &&
         (top1    <=  bottom2) ){
         return true
-    }
-}
-
-// Detect collision for any elements, wiether it'd
-function collisionDetect2() {
-    if (myHitOther('player', 'myImg02')) {
-        alert("Player hit box.")
     }
 }
 
